@@ -4,10 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://c4ebceh3ykpsm" path="res://src/draggable.tscn" id="1_p7ewo"]
 [ext_resource type="Shape2D" uid="uid://525l58xvpmcq" path="res://src/resource_shape.tres" id="3_ovsrw"]
 
-[node name="Energy" type="Sprite2D" unique_id=1750922455]
+[node name="Energy" type="RigidBody2D" unique_id=968233515]
+gravity_scale = 0.05
+linear_damp = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=242807934]
 texture = ExtResource("1_1yhd4")
 region_enabled = true
 region_rect = Rect2(0, 0, 8, 8)
 
 [node name="Draggable" parent="." unique_id=107635512 instance=ExtResource("1_p7ewo")]
 Shape = ExtResource("3_ovsrw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=640760609]
+shape = ExtResource("3_ovsrw")

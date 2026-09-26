@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://7vjv2ah0vxrb" path="res://art/sprites-x8.png" id="1_ubmek"]
 [ext_resource type="PackedScene" uid="uid://c4ebceh3ykpsm" path="res://src/draggable.tscn" id="2_bx3wh"]
-[ext_resource type="Shape2D" uid="uid://bqsg46ud8x0ct" path="res://src/spore_circle_shape.tres" id="3_agfdk"]
 [ext_resource type="Shape2D" uid="uid://525l58xvpmcq" path="res://src/resource_shape.tres" id="3_k0i7u"]
 
 [node name="Spore" type="RigidBody2D" unique_id=2006965770]
@@ -18,4 +17,4 @@ region_rect = Rect2(0, 16, 8, 8)
 Shape = ExtResource("3_k0i7u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1605893836]
-shape = ExtResource("3_agfdk")
+shape = ExtResource("3_k0i7u")
