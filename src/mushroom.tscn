@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cbp8id4oyjy4l"]
+
+[ext_resource type="Texture2D" uid="uid://lfdmkjkxaaxp" path="res://art/sprites-x16.png" id="1_g8rtr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_km8ha"]
+
+[node name="Mushroom" type="Area2D" unique_id=1844938893]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1630878298]
+texture = ExtResource("1_g8rtr")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1440140249]
+shape = SubResource("CircleShape2D_km8ha")

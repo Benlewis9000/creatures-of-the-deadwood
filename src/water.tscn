@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://uigj44juy1f0"]
+
+[ext_resource type="Texture2D" uid="uid://7vjv2ah0vxrb" path="res://art/sprites-x8.png" id="1_voy0o"]
+[ext_resource type="PackedScene" uid="uid://c4ebceh3ykpsm" path="res://src/draggable.tscn" id="2_fafcx"]
+[ext_resource type="Shape2D" uid="uid://525l58xvpmcq" path="res://src/resource_shape.tres" id="3_fafcx"]
+
+[node name="Water" type="Sprite2D" unique_id=1334213613]
+texture = ExtResource("1_voy0o")
+region_enabled = true
+region_rect = Rect2(0, 8, 8, 8)
+
+[node name="Draggable" parent="." unique_id=107635512 instance=ExtResource("2_fafcx")]
+Shape = ExtResource("3_fafcx")

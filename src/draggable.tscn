@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c4ebceh3ykpsm"]
+
+[ext_resource type="Script" uid="uid://ct156duqx6aij" path="res://src/Draggable.cs" id="1_xxrpt"]
+
+[node name="Draggable" type="Area2D" unique_id=107635512]
+script = ExtResource("1_xxrpt")
+DragSpeed = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1744767286]
+
+[connection signal="input_event" from="." to="." method="OnInputEvent"]

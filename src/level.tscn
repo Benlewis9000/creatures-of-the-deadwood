@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://domq5rm0ob18"]
+
+[ext_resource type="Texture2D" uid="uid://bysdiou1vtpvo" path="res://art/root-tree.png" id="1_ybxv7"]
+[ext_resource type="PackedScene" uid="uid://molg3yfvakqy" path="res://src/spore.tscn" id="2_4q7qo"]
+[ext_resource type="PackedScene" uid="uid://uigj44juy1f0" path="res://src/water.tscn" id="3_feg4a"]
+[ext_resource type="PackedScene" uid="uid://d0jbqehv3p1w4" path="res://src/energy.tscn" id="4_dh7pt"]
+
+[sub_resource type="Curve2D" id="Curve2D_ybxv7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 320, -8)
+}
+point_count = 2
+
+[node name="Level" type="Node2D" unique_id=737300030]
+
+[node name="GameBackground" type="Sprite2D" parent="." unique_id=1531637260]
+position = Vector2(160, 90)
+texture = ExtResource("1_ybxv7")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=365407864]
+scale = Vector2(0.167, 0.167)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1782707766]
+polygon = PackedVector2Array(1, 1076, 4, 1005, 131, 972, 545, 739, 652, 593, 607, 506, 399, 467, 146, 522, 286, 449, 411, 445, 434, 383, 395, 332, 477, 376, 466, 429, 535, 450, 575, 408, 569, 369, 519, 325, 519, 136, 418, 0, 586, 4, 639, 96, 793, 131, 906, 2, 998, 5, 888, 130, 911, 238, 1114, 260, 950, 279, 995, 348, 1002, 431, 1225, 341, 1223, 285, 1248, 335, 1329, 287, 1250, 380, 1055, 456, 1193, 461, 1305, 496, 1655, 442, 1686, 477, 1629, 562, 1525, 559, 1633, 774, 1831, 858, 1914, 923, 1917, 1046, 1567, 856, 1245, 773, 1314, 872, 1510, 988, 1589, 1065, 1506, 1079, 1304, 982, 1200, 891, 1034, 850, 787, 907, 522, 1070)
+
+[node name="ResourceSpawner" type="Path2D" parent="." unique_id=396871285]
+curve = SubResource("Curve2D_ybxv7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ResourceSpawner" unique_id=1802867011]
+position = Vector2(0, -8)
+
+[node name="Spore" parent="." unique_id=1884713373 instance=ExtResource("2_4q7qo")]
+position = Vector2(29, 43)
+
+[node name="Water" parent="." unique_id=1334213613 instance=ExtResource("3_feg4a")]
+position = Vector2(47, 34)
+
+[node name="Energy" parent="." unique_id=1750922455 instance=ExtResource("4_dh7pt")]
+position = Vector2(12, 28)
