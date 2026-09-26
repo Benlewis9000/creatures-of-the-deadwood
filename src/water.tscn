@@ -5,6 +5,7 @@
 [ext_resource type="Shape2D" uid="uid://525l58xvpmcq" path="res://src/resource_shape.tres" id="3_fafcx"]
 
 [node name="Water" type="RigidBody2D" unique_id=359782397]
+collision_mask = 0
 gravity_scale = 0.1
 linear_damp = 2.0
 

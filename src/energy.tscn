@@ -5,6 +5,7 @@
 [ext_resource type="Shape2D" uid="uid://525l58xvpmcq" path="res://src/resource_shape.tres" id="3_ovsrw"]
 
 [node name="Energy" type="RigidBody2D" unique_id=968233515]
+collision_mask = 0
 gravity_scale = 0.05
 linear_damp = 2.0
 
