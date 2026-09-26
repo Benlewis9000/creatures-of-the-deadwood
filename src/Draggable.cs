@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace RootGame;
@@ -10,10 +11,12 @@ public partial class Draggable : Area2D
 
 	[Export] public bool Disabled { get; set; }
 
+	private RigidBody2D _parent;
 	private bool _isDragging;
 
 	public override void _Ready()
 	{
+		_parent = GetParent<RigidBody2D>() ?? throw new NullReferenceException("Parent is not a RigidBody2D");
 		GetNode<CollisionShape2D>("CollisionShape2D").SetShape(Shape);
 	}
 
@@ -91,11 +94,10 @@ public partial class Draggable : Area2D
 		_isDragging = false;
 		
 		var mousePos = GetGlobalMousePosition();
-		var node = GetParent<RigidBody2D>();
-		var nodePos = node.Position;
+		var nodePos = _parent.Position;
 		var distance = (mousePos - nodePos).Floor();
 		var vector = distance.Normalized();
-		node.LinearVelocity += vector * (distance.Length() * 4);
+		_parent.LinearVelocity += vector * (distance.Length() * 4);
 	}
 	
 	private void ProcessDrag(double delta)
@@ -106,9 +108,8 @@ public partial class Draggable : Area2D
 		}
 		
 		var mousePos = GetGlobalMousePosition();
-		var node = GetParent<Node2D>();
-		var nodePos = node.Position;
+		var nodePos = _parent.Position;
 		var nextPos = nodePos.Lerp(mousePos, DragSpeed * (float) delta);
-		node.Position = nextPos;
+		_parent.Position = nextPos;
 	}
 }

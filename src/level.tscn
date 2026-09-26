@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://domq5rm0ob18"]
 
+[ext_resource type="Script" uid="uid://dohl4hh0bdcu" path="res://src/Level.cs" id="1_dh7pt"]
 [ext_resource type="Texture2D" uid="uid://bysdiou1vtpvo" path="res://art/root-tree.png" id="1_ybxv7"]
-[ext_resource type="PackedScene" uid="uid://molg3yfvakqy" path="res://src/spore.tscn" id="2_4q7qo"]
-[ext_resource type="PackedScene" uid="uid://uigj44juy1f0" path="res://src/water.tscn" id="3_feg4a"]
-[ext_resource type="PackedScene" uid="uid://d0jbqehv3p1w4" path="res://src/energy.tscn" id="4_dh7pt"]
 
 [sub_resource type="Curve2D" id="Curve2D_ybxv7"]
 _data = {
@@ -12,6 +10,7 @@ _data = {
 point_count = 2
 
 [node name="Level" type="Node2D" unique_id=737300030]
+script = ExtResource("1_dh7pt")
 
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1531637260]
 position = Vector2(160, 90)
@@ -26,14 +25,10 @@ polygon = PackedVector2Array(1, 1076, 4, 1005, 131, 972, 545, 739, 652, 593, 607
 [node name="ResourceSpawner" type="Path2D" parent="." unique_id=396871285]
 curve = SubResource("Curve2D_ybxv7")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="ResourceSpawner" unique_id=1802867011]
+[node name="Path" type="PathFollow2D" parent="ResourceSpawner" unique_id=1802867011]
 position = Vector2(0, -8)
 
-[node name="Spore" parent="." unique_id=1884713373 instance=ExtResource("2_4q7qo")]
-position = Vector2(29, 43)
+[node name="ResourceTimer" type="Timer" parent="." unique_id=2115397942]
+autostart = true
 
-[node name="Water" parent="." unique_id=1334213613 instance=ExtResource("3_feg4a")]
-position = Vector2(47, 34)
-
-[node name="Energy" parent="." unique_id=1750922455 instance=ExtResource("4_dh7pt")]
-position = Vector2(12, 28)
+[connection signal="timeout" from="ResourceTimer" to="." method="OnResourceTimerTimeout"]
