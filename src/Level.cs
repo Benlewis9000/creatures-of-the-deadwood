@@ -37,22 +37,6 @@ public partial class Level : Node2D
 		_resourceTimer.Start(interval);
 	}
 
-	private void OnTreeAreaEntered(Node2D body)
-	{
-		if (body is ITreeEnterable res)
-		{
-			res.OnTreeEnter();
-		}
-	}
-
-	private void OnTreeAreaExited(Node2D body)
-	{
-		if (body is ITreeEnterable res)
-		{
-			res.OnTreeExit();
-		}
-	}
-
 	private Node2D CreateSporeScene()
 	{
 		var spore = CreateResourceScene<Spore>(Resource.SporeScene);

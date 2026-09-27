@@ -2,20 +2,26 @@ using Godot;
 
 namespace RootGame;
 
-public partial class Spore : RigidBody2D, ITreeEnterable
+public partial class Spore : RigidBody2D
 {
     [Signal] public delegate void SporePlantedEventHandler(Vector2 position);
     
     private bool _isInTreeArea;
-    
-    public void OnTreeEnter()
+
+    private void OnAreaEntered(Area2D area)
     {
-        _isInTreeArea = true;
+        if (area is Tree)
+        {
+            _isInTreeArea = true;
+        }
     }
 
-    public void OnTreeExit()
+    private void OnAreaExited(Area2D area)
     {
-        _isInTreeArea = false;
+        if (area is Tree)
+        {
+            _isInTreeArea = false;
+        }
     }
 
     private void OnDragEnd()
