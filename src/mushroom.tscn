@@ -1,15 +1,20 @@
 [gd_scene format=3 uid="uid://cbp8id4oyjy4l"]
 
 [ext_resource type="Texture2D" uid="uid://lfdmkjkxaaxp" path="res://art/sprites-x16.png" id="1_g8rtr"]
+[ext_resource type="Script" uid="uid://m5cdid7d0iqj" path="res://src/Mushroom.cs" id="1_mgine"]
+[ext_resource type="PackedScene" uid="uid://c4ebceh3ykpsm" path="res://src/draggable.tscn" id="3_i4c76"]
+[ext_resource type="Shape2D" uid="uid://ddfjyrslk8nwr" path="res://src/mushroom_circle_shape.tres" id="4_5prij"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_km8ha"]
-
-[node name="Mushroom" type="Area2D" unique_id=1844938893]
+[node name="Mushroom" type="RigidBody2D" unique_id=1848773242]
+script = ExtResource("1_mgine")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1630878298]
 texture = ExtResource("1_g8rtr")
 region_enabled = true
 region_rect = Rect2(0, 16, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1440140249]
-shape = SubResource("CircleShape2D_km8ha")
+[node name="Draggable" parent="." unique_id=107635512 instance=ExtResource("3_i4c76")]
+Shape = ExtResource("4_5prij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1975797857]
+shape = ExtResource("4_5prij")

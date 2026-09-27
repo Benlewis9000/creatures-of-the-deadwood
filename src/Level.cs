@@ -19,19 +19,14 @@ public partial class Level : Node2D
 	private void OnResourceTimerTimeout()
 	{
 		var resourceRandom = GD.Randi() % 6;
-		var resourceScene = resourceRandom switch
+		var resource = resourceRandom switch
 		{
-			< 1 => Resource.SporeScene,
-			< 3 => Resource.EnergyScene,
-			_ => Resource.WaterScene
+			< 1 => CreateSporeScene(),
+			< 3 => CreateEnergyScene(),
+			_ => CreateWaterScene()
 		};
-		var scene = resourceScene.Instantiate<Node2D>();
 		
-		var spawnLocation = GetNode<PathFollow2D>("ResourceSpawner/Path");
-		spawnLocation.ProgressRatio = GD.Randf();
-		scene.Position = spawnLocation.Position;
-		
-		AddChild(scene);
+		AddChild(resource);
 		RestartResourceTimer();
 	}
 	
@@ -40,5 +35,53 @@ public partial class Level : Node2D
 		// Spawnrate of 3 to 10 seconds
 		var interval = 3 + GD.Randf() % 10 ;
 		_resourceTimer.Start(interval);
+	}
+
+	private void OnTreeAreaEntered(Node2D body)
+	{
+		if (body is ITreeEnterable res)
+		{
+			res.OnTreeEnter();
+		}
+	}
+
+	private void OnTreeAreaExited(Node2D body)
+	{
+		if (body is ITreeEnterable res)
+		{
+			res.OnTreeExit();
+		}
+	}
+
+	private Node2D CreateSporeScene()
+	{
+		var spore = CreateResourceScene<Spore>(Resource.SporeScene);
+		spore.SporePlanted += (position) =>
+		{
+			var mushroom = GD.Load<PackedScene>("res://src/mushroom.tscn").Instantiate<Node2D>();
+			mushroom.Position = position;
+			AddChild(mushroom);
+		};
+		
+		return spore;
+	}
+
+	private Node2D CreateEnergyScene()
+	{
+		return CreateResourceScene<Node2D>(Resource.EnergyScene);
+	}
+
+	private Node2D CreateWaterScene()
+	{
+		return CreateResourceScene<Node2D>(Resource.WaterScene);
+	}
+
+	private T CreateResourceScene<T>(PackedScene resourceScene) where T : Node2D
+	{
+		var scene = resourceScene.Instantiate<T>();
+		var spawnLocation = GetNode<PathFollow2D>("ResourceSpawner/Path");
+		spawnLocation.ProgressRatio = GD.Randf();
+		scene.Position = spawnLocation.Position;
+		return  scene;
 	}
 }

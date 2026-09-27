@@ -10,6 +10,8 @@ public partial class Draggable : Area2D
 	[Export] public int DragSpeed { get; set; } = 100;
 
 	[Export] public bool Disabled { get; set; }
+	
+	[Signal] public delegate void DragEndEventHandler();
 
 	private RigidBody2D _parent;
 	private bool _isDragging;
@@ -94,6 +96,8 @@ public partial class Draggable : Area2D
 		var distance = (mousePos - nodePos).Floor();
 		var vector = distance.Normalized();
 		_parent.LinearVelocity += vector * (distance.Length() * 4);
+		
+		EmitSignalDragEnd();
 	}
 	
 	private void ProcessDrag(double delta)
