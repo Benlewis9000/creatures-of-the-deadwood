@@ -19,10 +19,7 @@ public partial class Mushroom : RigidBody2D
         set
         {
             _energyLevel = value;
-            if (IsSaturated)
-            {
-                _light.Enabled = true;
-            }
+            TrySaturate();
         }
     }
     
@@ -32,10 +29,7 @@ public partial class Mushroom : RigidBody2D
         set
         {
             _waterLevel = value;
-            if (IsSaturated)
-            {
-                _light.Enabled = true;
-            }
+            TrySaturate();
         }
     }
 

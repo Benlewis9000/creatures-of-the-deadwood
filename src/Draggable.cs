@@ -116,4 +116,24 @@ public partial class Draggable : Area2D
 		var nextPos = nodePos.Lerp(mousePos, DragSpeed * (float) delta);
 		_parent.Position = nextPos;
 	}
+
+	private void OnMouseEntered()
+	{
+		if (Disabled)
+		{
+			return;
+		}
+		
+		Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
+	}
+	
+	private void OnMouseExited()
+	{
+		if (Disabled)
+		{
+			return;
+		}
+		
+		Input.SetDefaultCursorShape();
+	}
 }

@@ -9,3 +9,5 @@ DragSpeed = 30
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1744767286]
 
 [connection signal="input_event" from="." to="." method="OnInputEvent"]
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]
