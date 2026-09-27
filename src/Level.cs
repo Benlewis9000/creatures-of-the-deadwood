@@ -6,10 +6,17 @@ namespace RootGame;
 public partial class Level : Node2D
 {
 	private Timer _resourceTimer;
+	private Timer _monsterTimer;
+	private Monster[] _monsters =  new Monster[6];
 	
 	public override void _Ready()
 	{
 		_resourceTimer = GetNode<Timer>("ResourceTimer") ?? throw new NullReferenceException("No ResourceTimer for level");
+		_monsterTimer = GetNode<Timer>("MonsterTimer") ?? throw new NullReferenceException("No MonsterTimer for level");
+		for (int i = 0; i < 6; i++)
+		{
+			_monsters[i] = GetNode<Monster>("Monster" + i);
+		}
 	}
 
 	public override void _Process(double delta)
@@ -26,15 +33,19 @@ public partial class Level : Node2D
 			_ => CreateWaterScene()
 		};
 		
-		AddChild(resource);
-		RestartResourceTimer();
-	}
-	
-	private void RestartResourceTimer()
-	{
-		// Spawnrate of 3 to 10 seconds
 		var interval = 3 + GD.Randf() % 10 ;
 		_resourceTimer.Start(interval);
+		
+		AddChild(resource);
+	}
+
+	private void OnMonsterTimerTimeout()
+	{
+		var monsterRandom = GD.Randi() % 5;
+		_monsters[monsterRandom].Activate();
+		
+		var interval = 10 + GD.Randi() % 25 ;
+		_monsterTimer.Start(interval);
 	}
 
 	private Node2D CreateSporeScene()
