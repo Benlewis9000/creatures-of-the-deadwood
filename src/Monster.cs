@@ -32,9 +32,16 @@ public partial class Monster : Area2D
 		GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play(animationName);
 	}
 	
-	private void OnActiveTimerTimeout()
+	public void Deactivate()
 	{
 		_isActivated = false;
 		Visible = false;
 	}
+	
+	private void OnActiveTimerTimeout()
+	{
+		Deactivate();
+	}
+
+	
 }

@@ -9,12 +9,14 @@ public partial class Water : RigidBody2D
 
 	private void OnDragEnd()
 	{
-		if (_targetMushroom is not null)
+		if (_targetMushroom is null)
 		{
-			_targetMushroom.WaterLevel++;
-			Hide();
-			QueueFree();
+			return;
 		}
+		
+		_targetMushroom.WaterLevel++;
+		Hide();
+		QueueFree();
 	}
 	
 	private void OnBodyEntered(Node body)

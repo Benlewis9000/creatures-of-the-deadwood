@@ -41,6 +41,7 @@ color = Color(0.85814106, 0.85814106, 0.85814106, 1)
 
 [node name="Monster0" parent="." unique_id=1067115391 instance=ExtResource("5_dh7pt")]
 position = Vector2(125, 47)
+_isActivated = true
 
 [node name="Monster1" parent="." unique_id=402391665 instance=ExtResource("5_dh7pt")]
 position = Vector2(146, 105)
