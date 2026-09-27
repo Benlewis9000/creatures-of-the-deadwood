@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bjqhpqqqyyn57" path="res://tree.tscn" id="3_68xyb"]
 [ext_resource type="PackedScene" uid="uid://cbp8id4oyjy4l" path="res://src/mushroom.tscn" id="4_feg4a"]
 [ext_resource type="PackedScene" uid="uid://d4kj8bb8lkfs3" path="res://src/monster.tscn" id="5_dh7pt"]
+[ext_resource type="Texture2D" uid="uid://bhubpcay0p2r6" path="res://art/hunger-bar-under.png" id="6_pothl"]
+[ext_resource type="Texture2D" uid="uid://duekd680dphx0" path="res://art/hunger-bar-over.png" id="7_7i26j"]
+[ext_resource type="FontFile" uid="uid://bsc1sf8d3ssrw" path="res://fonts/Micro5-Regular.ttf" id="8_7i26j"]
+[ext_resource type="Texture2D" uid="uid://cdxnu8us2i3an" path="res://art/card.png" id="9_wc5yb"]
 
 [sub_resource type="Curve2D" id="Curve2D_ybxv7"]
 _data = {
@@ -33,15 +37,14 @@ autostart = true
 [node name="MonsterTimer" type="Timer" parent="." unique_id=1408591269]
 autostart = true
 
-[node name="Mushroom" parent="." unique_id=1848773242 instance=ExtResource("4_feg4a")]
-position = Vector2(51, 151)
+[node name="ScoreTimer" type="Timer" parent="." unique_id=1163607943]
+autostart = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=2140361393]
 color = Color(0.85814106, 0.85814106, 0.85814106, 1)
 
 [node name="Monster0" parent="." unique_id=1067115391 instance=ExtResource("5_dh7pt")]
 position = Vector2(125, 47)
-_isActivated = true
 
 [node name="Monster1" parent="." unique_id=402391665 instance=ExtResource("5_dh7pt")]
 position = Vector2(146, 105)
@@ -58,5 +61,96 @@ position = Vector2(246, 148)
 [node name="Monster5" parent="." unique_id=306595039 instance=ExtResource("5_dh7pt")]
 position = Vector2(285, 171)
 
+[node name="Mushroom" parent="." unique_id=1848773242 instance=ExtResource("4_feg4a")]
+position = Vector2(51, 151)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1799084714]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 125.0
+offset_top = 2.0
+offset_right = 189.0
+offset_bottom = 7.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+value = 100.0
+texture_under = ExtResource("6_pothl")
+texture_progress = ExtResource("7_7i26j")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=674101331]
+offset_left = 300.0
+offset_top = -1.0
+offset_right = 340.0
+offset_bottom = 22.0
+theme_override_fonts/font = ExtResource("8_7i26j")
+theme_override_font_sizes/font_size = 16
+text = "999"
+
+[node name="GameOverCard" type="Node2D" parent="." unique_id=954512517]
+visible = false
+z_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="GameOverCard" unique_id=1875547650]
+modulate = Color(0.8158964, 0.8158964, 0.8158964, 1)
+position = Vector2(157, 92)
+texture = ExtResource("9_wc5yb")
+
+[node name="Label" type="Label" parent="GameOverCard" unique_id=186678395]
+offset_left = 129.0
+offset_top = 50.0
+offset_right = 186.0
+offset_bottom = 94.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -6
+theme_override_fonts/font = ExtResource("8_7i26j")
+theme_override_font_sizes/font_size = 24
+text = "GAME
+OVER!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="GameOverCard" unique_id=1342171816]
+offset_left = 129.0
+offset_top = 77.0
+offset_right = 186.0
+offset_bottom = 121.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_constants/line_spacing = -4
+theme_override_fonts/font = ExtResource("8_7i26j")
+theme_override_font_sizes/font_size = 8
+text = "The creatures
+of the deadwood
+perished."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="GameOverCard" unique_id=702253870]
+offset_left = 129.0
+offset_top = 91.0
+offset_right = 186.0
+offset_bottom = 135.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_constants/line_spacing = -4
+theme_override_fonts/font = ExtResource("8_7i26j")
+theme_override_font_sizes/font_size = 8
+text = "SCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="GameOverCard" unique_id=2079957170]
+offset_left = 149.0
+offset_top = 114.0
+offset_right = 189.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("8_7i26j")
+theme_override_font_sizes/font_size = 16
+text = "999"
+
 [connection signal="timeout" from="ResourceTimer" to="." method="OnResourceTimerTimeout"]
 [connection signal="timeout" from="MonsterTimer" to="." method="OnMonsterTimerTimeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]

@@ -5,22 +5,73 @@ namespace RootGame;
 
 public partial class Level : Node2D
 {
+	[Signal]
+	public delegate void GameOverEventHandler(int score);
+
+	private const int MaxSaturation = 90;
+	
+	private int _score;
+	private int _saturation = MaxSaturation;
+
+	public int Score
+	{
+		get => _score;
+		private set
+		{
+			_score = value;
+			_scoreLabel.Text = FormatScore(value);
+		}
+	}
+	
+	public int Saturation
+	{
+		get => _saturation;
+		private set
+		{
+			_saturation = value > MaxSaturation ? MaxSaturation : value;
+			_progressBar.Value = _saturation;
+			
+			if (value <= 0)
+			{
+				DoGameOver();
+			}
+		}
+	}
+	private TextureProgressBar _progressBar;
+	private Label _scoreLabel;
 	private Timer _resourceTimer;
 	private Timer _monsterTimer;
+	private Timer _scoreTimer;
 	private Monster[] _monsters =  new Monster[6];
-	
+
 	public override void _Ready()
 	{
+		_progressBar = GetNode<TextureProgressBar>("TextureProgressBar") ?? throw new NullReferenceException("No TextureProgressBar for level");
+		_progressBar.MaxValue = MaxSaturation;
+		_scoreLabel = GetNode<Label>("ScoreLabel") ?? throw new NullReferenceException("No ScoreLabel for level");
+		_scoreLabel.Text = FormatScore(Score);
 		_resourceTimer = GetNode<Timer>("ResourceTimer") ?? throw new NullReferenceException("No ResourceTimer for level");
 		_monsterTimer = GetNode<Timer>("MonsterTimer") ?? throw new NullReferenceException("No MonsterTimer for level");
-		for (int i = 0; i < 6; i++)
+		_scoreTimer = GetNode<Timer>("ScoreTimer") ?? throw new NullReferenceException("No ScoreTimer for level");
+		for (var i = 0; i < 6; i++)
 		{
 			_monsters[i] = GetNode<Monster>("Monster" + i);
 		}
+		
+		
 	}
 
-	public override void _Process(double delta)
+	public void DoGameOver()
 	{
+		_resourceTimer.Stop();
+		_monsterTimer.Stop();
+		_scoreTimer.Stop();
+		
+		EmitSignalGameOver(_score);
+		
+		var gameOverCard = GetNode<Node2D>("GameOverCard");
+		gameOverCard.GetNode<Label>("ScoreLabel").Text = FormatScore(Score);
+		gameOverCard.Show();
 	}
 
 	private void OnResourceTimerTimeout()
@@ -48,14 +99,30 @@ public partial class Level : Node2D
 		_monsterTimer.Start(interval);
 	}
 
+	private void OnScoreTimerTimeout()
+	{
+		Score++;
+		Saturation--;
+	}
+
+	private string FormatScore(int score)
+	{
+		return $"{score:D3}";
+	}
+
 	private Node2D CreateSporeScene()
 	{
 		var spore = CreateResourceScene<Spore>(Resource.SporeScene);
 		spore.SporePlanted += (position) =>
 		{
-			var mushroom = GD.Load<PackedScene>("res://src/mushroom.tscn").Instantiate<Node2D>();
+			var mushroom = GD.Load<PackedScene>("res://src/mushroom.tscn").Instantiate<Mushroom>();
 			mushroom.Position = position;
 			AddChild(mushroom);
+			mushroom.MonsterFed += () =>
+			{
+				Saturation += 10;
+				_progressBar.Value = Saturation;
+			};
 		};
 		
 		return spore;
