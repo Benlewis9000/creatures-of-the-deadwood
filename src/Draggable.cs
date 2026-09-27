@@ -46,11 +46,6 @@ public partial class Draggable : Area2D
 		{
 			BeginDrag();
 		}
-
-		if (eventMouseButton.IsActionReleased("mouse_left"))
-		{
-			EndDrag();
-		}
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -65,6 +60,7 @@ public partial class Draggable : Area2D
 			return;
 		}
 		
+		// End drag is an unhandled input since the mouse may not be within the collision shape on release
 		if (eventMouseButton.IsActionReleased("mouse_left"))
 		{
 			EndDrag();

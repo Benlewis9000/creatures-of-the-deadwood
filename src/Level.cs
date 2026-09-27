@@ -37,8 +37,8 @@ public partial class Level : Node2D
 	
 	private void RestartResourceTimer()
 	{
-		// Spawnrate of 1 to 7 seconds
-		var interval = 1 + GD.Randf() % 7 ;
+		// Spawnrate of 3 to 10 seconds
+		var interval = 3 + GD.Randf() % 10 ;
 		_resourceTimer.Start(interval);
 	}
 }
