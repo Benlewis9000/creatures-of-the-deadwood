@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dohl4hh0bdcu" path="res://src/Level.cs" id="1_dh7pt"]
 [ext_resource type="Texture2D" uid="uid://bysdiou1vtpvo" path="res://art/root-tree.png" id="1_ybxv7"]
 [ext_resource type="PackedScene" uid="uid://bjqhpqqqyyn57" path="res://tree.tscn" id="3_68xyb"]
+[ext_resource type="PackedScene" uid="uid://cbp8id4oyjy4l" path="res://src/mushroom.tscn" id="4_feg4a"]
 
 [sub_resource type="Curve2D" id="Curve2D_ybxv7"]
 _data = {
@@ -27,5 +28,8 @@ position = Vector2(0, -8)
 
 [node name="ResourceTimer" type="Timer" parent="." unique_id=2115397942]
 autostart = true
+
+[node name="Mushroom" parent="." unique_id=1848773242 instance=ExtResource("4_feg4a")]
+position = Vector2(51, 151)
 
 [connection signal="timeout" from="ResourceTimer" to="." method="OnResourceTimerTimeout"]

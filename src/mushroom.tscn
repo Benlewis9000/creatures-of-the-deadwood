@@ -6,6 +6,9 @@
 [ext_resource type="Shape2D" uid="uid://ddfjyrslk8nwr" path="res://src/mushroom_circle_shape.tres" id="4_5prij"]
 
 [node name="Mushroom" type="RigidBody2D" unique_id=1848773242]
+gravity_scale = 0.2
+freeze = true
+linear_damp = 1.0
 script = ExtResource("1_mgine")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1630878298]
@@ -18,3 +21,5 @@ Shape = ExtResource("4_5prij")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1975797857]
 shape = ExtResource("4_5prij")
+
+[connection signal="DragStart" from="Draggable" to="." method="OnDragStart"]

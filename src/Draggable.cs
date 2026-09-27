@@ -11,6 +11,8 @@ public partial class Draggable : Area2D
 
 	[Export] public bool Disabled { get; set; }
 	
+	[Signal] public delegate void DragStartEventHandler();
+	
 	[Signal] public delegate void DragEndEventHandler();
 
 	private RigidBody2D _parent;
@@ -46,7 +48,7 @@ public partial class Draggable : Area2D
 
 		if (eventMouseButton.IsActionPressed("mouse_left"))
 		{
-			BeginDrag();
+			StartDrag();
 		}
 	}
 
@@ -69,7 +71,7 @@ public partial class Draggable : Area2D
 		}
 	}
 
-	private void BeginDrag()
+	private void StartDrag()
 	{
 		if (_isDragging)
 		{
@@ -80,6 +82,8 @@ public partial class Draggable : Area2D
 		
 		var node = GetParent<RigidBody2D>();
 		node.LinearVelocity = Vector2.Zero;
+		
+		EmitSignalDragStart();
 	}
 
 	private void EndDrag()
