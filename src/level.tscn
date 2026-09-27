@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://duekd680dphx0" path="res://art/hunger-bar-over.png" id="7_7i26j"]
 [ext_resource type="FontFile" uid="uid://bsc1sf8d3ssrw" path="res://fonts/Micro5-Regular.ttf" id="8_7i26j"]
 [ext_resource type="Texture2D" uid="uid://cdxnu8us2i3an" path="res://art/card.png" id="9_wc5yb"]
+[ext_resource type="AudioStream" uid="uid://41r3cyvftfn2" path="res://art/deadwood.wav" id="10_ssy8p"]
+[ext_resource type="AudioStream" uid="uid://dkw023jol7gp5" path="res://art/gameover.wav" id="11_lmnmg"]
 
 [sub_resource type="Curve2D" id="Curve2D_ybxv7"]
 _data = {
@@ -165,6 +167,13 @@ theme_override_font_sizes/font_size = 8
 text = "[R] to Restart"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MusicSound" type="AudioStreamPlayer" parent="." unique_id=98490177]
+stream = ExtResource("10_ssy8p")
+autoplay = true
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="." unique_id=1719408817]
+stream = ExtResource("11_lmnmg")
 
 [connection signal="timeout" from="ResourceTimer" to="." method="OnResourceTimerTimeout"]
 [connection signal="timeout" from="MonsterTimer" to="." method="OnMonsterTimerTimeout"]

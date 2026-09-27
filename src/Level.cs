@@ -83,6 +83,10 @@ public partial class Level : Node2D
 		_monsterTimer.Stop();
 		_scoreTimer.Stop();
 		
+		GetNode<AudioStreamPlayer>("MusicSound").Stop();
+		GetNode<AudioStreamPlayer>("GameOverSound").Play();
+
+		
 		var gameOverCard = GetNode<Node2D>("GameOverCard");
 		gameOverCard.GetNode<Label>("ScoreLabel").Text = FormatScore(Score);
 		gameOverCard.Show();
