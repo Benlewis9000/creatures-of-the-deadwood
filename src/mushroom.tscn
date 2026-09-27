@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://lfdmkjkxaaxp" path="res://art/sprites-x16.png" id="1_g8rtr"]
 [ext_resource type="Script" uid="uid://m5cdid7d0iqj" path="res://src/Mushroom.cs" id="1_mgine"]
 [ext_resource type="PackedScene" uid="uid://c4ebceh3ykpsm" path="res://src/draggable.tscn" id="3_i4c76"]
+[ext_resource type="Texture2D" uid="uid://cu0t2456jmpf1" path="res://art/point-light.png" id="3_jd1vk"]
 [ext_resource type="Shape2D" uid="uid://ddfjyrslk8nwr" path="res://src/mushroom_circle_shape.tres" id="4_5prij"]
 
 [node name="Mushroom" type="RigidBody2D" unique_id=1848773242]
@@ -15,6 +16,13 @@ script = ExtResource("1_mgine")
 texture = ExtResource("1_g8rtr")
 region_enabled = true
 region_rect = Rect2(0, 16, 16, 16)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=58241953]
+scale = Vector2(1, 0.8125)
+enabled = false
+energy = 0.25
+texture = ExtResource("3_jd1vk")
+texture_scale = 0.15
 
 [node name="Draggable" parent="." unique_id=107635512 instance=ExtResource("3_i4c76")]
 Shape = ExtResource("4_5prij")

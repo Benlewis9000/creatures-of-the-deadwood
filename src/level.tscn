@@ -32,4 +32,7 @@ autostart = true
 [node name="Mushroom" parent="." unique_id=1848773242 instance=ExtResource("4_feg4a")]
 position = Vector2(51, 151)
 
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=2140361393]
+color = Color(0.85814106, 0.85814106, 0.85814106, 1)
+
 [connection signal="timeout" from="ResourceTimer" to="." method="OnResourceTimerTimeout"]

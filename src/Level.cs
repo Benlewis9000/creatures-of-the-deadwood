@@ -18,7 +18,7 @@ public partial class Level : Node2D
 
 	private void OnResourceTimerTimeout()
 	{
-		var resourceRandom = GD.Randi() % 6;
+		var resourceRandom = GD.Randi() % 5;
 		var resource = resourceRandom switch
 		{
 			< 1 => CreateSporeScene(),
