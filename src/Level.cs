@@ -84,7 +84,7 @@ public partial class Level : Node2D
 			_ => CreateWaterScene()
 		};
 		
-		var interval = 3 + GD.Randf() % 10 ;
+		var interval = 1 + GD.Randf() % 7 ;
 		_resourceTimer.Start(interval);
 		
 		AddChild(resource);
@@ -95,7 +95,7 @@ public partial class Level : Node2D
 		var monsterRandom = GD.Randi() % 5;
 		_monsters[monsterRandom].Activate();
 		
-		var interval = 10 + GD.Randi() % 25 ;
+		var interval = 5 + GD.Randi() % 15 ;
 		_monsterTimer.Start(interval);
 	}
 

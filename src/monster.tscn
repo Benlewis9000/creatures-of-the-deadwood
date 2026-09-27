@@ -39,7 +39,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"eyes_0",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -59,7 +59,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"eyes_1",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_km8ha"]
@@ -79,7 +79,7 @@ animation = &"eyes_1"
 shape = SubResource("CircleShape2D_km8ha")
 
 [node name="ActiveTimer" type="Timer" parent="." unique_id=1425562182]
-wait_time = 4.6000000000000005
+wait_time = 2.875
 one_shot = true
 
 [connection signal="timeout" from="ActiveTimer" to="." method="OnActiveTimerTimeout"]
