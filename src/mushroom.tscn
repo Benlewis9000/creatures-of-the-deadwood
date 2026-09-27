@@ -26,6 +26,7 @@ texture_scale = 0.15
 
 [node name="Draggable" parent="." unique_id=107635512 instance=ExtResource("3_i4c76")]
 Shape = ExtResource("4_5prij")
+Disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1975797857]
 shape = ExtResource("4_5prij")
