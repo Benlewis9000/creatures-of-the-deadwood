@@ -80,13 +80,14 @@ texture_under = ExtResource("6_pothl")
 texture_progress = ExtResource("7_7i26j")
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=674101331]
-offset_left = 300.0
+offset_left = 277.0
 offset_top = -1.0
-offset_right = 340.0
+offset_right = 317.0
 offset_bottom = 22.0
 theme_override_fonts/font = ExtResource("8_7i26j")
 theme_override_font_sizes/font_size = 16
-text = "999"
+text = "9999"
+horizontal_alignment = 2
 
 [node name="GameOverCard" type="Node2D" parent="." unique_id=954512517]
 visible = false
@@ -99,12 +100,12 @@ texture = ExtResource("9_wc5yb")
 
 [node name="Label" type="Label" parent="GameOverCard" unique_id=186678395]
 offset_left = 129.0
-offset_top = 50.0
+offset_top = 46.0
 offset_right = 186.0
-offset_bottom = 94.0
+offset_bottom = 90.0
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/line_spacing = -6
+theme_override_constants/line_spacing = -9
 theme_override_fonts/font = ExtResource("8_7i26j")
 theme_override_font_sizes/font_size = 24
 text = "GAME
@@ -114,9 +115,9 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="GameOverCard" unique_id=1342171816]
 offset_left = 129.0
-offset_top = 77.0
+offset_top = 70.0
 offset_right = 186.0
-offset_bottom = 121.0
+offset_bottom = 114.0
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
 theme_override_constants/line_spacing = -4
@@ -130,11 +131,11 @@ vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="GameOverCard" unique_id=702253870]
 offset_left = 129.0
-offset_top = 91.0
+offset_top = 86.0
 offset_right = 186.0
-offset_bottom = 135.0
+offset_bottom = 130.0
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("8_7i26j")
 theme_override_font_sizes/font_size = 8
@@ -144,12 +145,26 @@ vertical_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="GameOverCard" unique_id=2079957170]
 offset_left = 149.0
-offset_top = 114.0
+offset_top = 108.0
 offset_right = 189.0
-offset_bottom = 137.0
+offset_bottom = 131.0
 theme_override_fonts/font = ExtResource("8_7i26j")
 theme_override_font_sizes/font_size = 16
 text = "999"
+
+[node name="Label4" type="Label" parent="GameOverCard" unique_id=1622082872]
+offset_left = 129.0
+offset_top = 107.0
+offset_right = 186.0
+offset_bottom = 151.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_constants/line_spacing = -4
+theme_override_fonts/font = ExtResource("8_7i26j")
+theme_override_font_sizes/font_size = 8
+text = "[R] to Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="ResourceTimer" to="." method="OnResourceTimerTimeout"]
 [connection signal="timeout" from="MonsterTimer" to="." method="OnMonsterTimerTimeout"]

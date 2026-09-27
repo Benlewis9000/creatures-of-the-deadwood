@@ -6,13 +6,14 @@ namespace RootGame;
 public partial class Level : Node2D
 {
 	[Signal]
-	public delegate void GameOverEventHandler(int score);
+	public delegate void RestartGameEventHandler();
 
 	private const int MaxSaturation = 90;
 	
 	private int _score;
 	private int _saturation = MaxSaturation;
-
+	private bool _isGameOver;
+	
 	public int Score
 	{
 		get => _score;
@@ -61,13 +62,26 @@ public partial class Level : Node2D
 		
 	}
 
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (!_isGameOver)
+		{
+			return;
+		}
+
+		if (@event.IsActionPressed("restart"))
+		{
+			EmitSignalRestartGame();
+		}
+	}
+
 	public void DoGameOver()
 	{
+		_isGameOver = true;
+		
 		_resourceTimer.Stop();
 		_monsterTimer.Stop();
 		_scoreTimer.Stop();
-		
-		EmitSignalGameOver(_score);
 		
 		var gameOverCard = GetNode<Node2D>("GameOverCard");
 		gameOverCard.GetNode<Label>("ScoreLabel").Text = FormatScore(Score);
@@ -107,7 +121,7 @@ public partial class Level : Node2D
 
 	private string FormatScore(int score)
 	{
-		return $"{score:D3}";
+		return $"{score:D4}";
 	}
 
 	private Node2D CreateSporeScene()
