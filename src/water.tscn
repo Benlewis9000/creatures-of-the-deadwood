@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://uigj44juy1f0"]
 
-[ext_resource type="Script" uid="uid://b2wou08x567ux" path="res://src/Water.cs" id="1_0rjux"]
+[ext_resource type="Script" uid="uid://bndviftupf8k1" path="res://src/water.gd" id="1_0rjux"]
 [ext_resource type="Texture2D" uid="uid://7vjv2ah0vxrb" path="res://art/sprites-x8.png" id="1_voy0o"]
 [ext_resource type="PackedScene" uid="uid://c4ebceh3ykpsm" path="res://src/draggable.tscn" id="2_fafcx"]
 [ext_resource type="Shape2D" uid="uid://525l58xvpmcq" path="res://src/resource_shape.tres" id="3_fafcx"]
@@ -22,6 +22,6 @@ shape = ExtResource("3_fafcx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=496075746]
 shape = ExtResource("3_fafcx")
 
-[connection signal="body_entered" from="Draggable" to="." method="OnBodyEntered"]
-[connection signal="body_exited" from="Draggable" to="." method="OnBodyExited"]
-[connection signal="drag_end" from="Draggable" to="." method="OnDragEnd"]
+[connection signal="body_entered" from="Draggable" to="." method="on_body_entered"]
+[connection signal="body_exited" from="Draggable" to="." method="on_body_exited"]
+[connection signal="drag_end" from="Draggable" to="." method="on_drag_end"]
