@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0jbqehv3p1w4"]
 
 [ext_resource type="Texture2D" uid="uid://7vjv2ah0vxrb" path="res://art/sprites-x8.png" id="1_1yhd4"]
-[ext_resource type="Script" uid="uid://df6u7h2cj5j6o" path="res://src/Energy.cs" id="1_fw362"]
+[ext_resource type="Script" uid="uid://d30us2ei5tt35" path="res://src/energy.gd" id="1_8nru3"]
 [ext_resource type="PackedScene" uid="uid://c4ebceh3ykpsm" path="res://src/draggable.tscn" id="1_p7ewo"]
 [ext_resource type="Shape2D" uid="uid://525l58xvpmcq" path="res://src/resource_shape.tres" id="3_ovsrw"]
 [ext_resource type="Texture2D" uid="uid://cu0t2456jmpf1" path="res://art/point-light.png" id="5_8nru3"]
@@ -10,7 +10,7 @@
 collision_mask = 0
 gravity_scale = 0.05
 linear_damp = 2.0
-script = ExtResource("1_fw362")
+script = ExtResource("1_8nru3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=242807934]
 texture = ExtResource("1_1yhd4")
@@ -28,6 +28,6 @@ scale = Vector2(0.05, 0.05)
 energy = 0.5
 texture = ExtResource("5_8nru3")
 
-[connection signal="body_entered" from="Draggable" to="." method="OnBodyEntered"]
-[connection signal="body_exited" from="Draggable" to="." method="OnBodyExited"]
-[connection signal="drag_end" from="Draggable" to="." method="OnDragEnd"]
+[connection signal="body_entered" from="Draggable" to="." method="on_body_entered"]
+[connection signal="body_exited" from="Draggable" to="." method="on_body_exited"]
+[connection signal="drag_end" from="Draggable" to="." method="on_drag_end"]
