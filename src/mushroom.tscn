@@ -27,13 +27,13 @@ texture_scale = 0.15
 
 [node name="Draggable" parent="." unique_id=107635512 instance=ExtResource("3_i4c76")]
 collision_mask = 4
-Shape = ExtResource("4_5prij")
-Disabled = true
+shape = ExtResource("4_5prij")
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1975797857]
 shape = ExtResource("4_5prij")
 
-[connection signal="DragEnd" from="Draggable" to="." method="OnDragEnd"]
-[connection signal="DragStart" from="Draggable" to="." method="OnDragStart"]
 [connection signal="area_entered" from="Draggable" to="." method="OnAreaEntered"]
 [connection signal="area_exited" from="Draggable" to="." method="OnAreaExited"]
+[connection signal="drag_end" from="Draggable" to="." method="OnDragEnd"]
+[connection signal="drag_start" from="Draggable" to="." method="OnDragStart"]

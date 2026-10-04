@@ -11,7 +11,7 @@ public partial class Mushroom : RigidBody2D
     private const int RequiredWaterLevel = 2;
 
     private PointLight2D _light;
-    private Draggable _draggable;
+    private GodotObject _draggable;
     private Monster _targetMonster;
     private int _energyLevel;
     private int _waterLevel;
@@ -43,7 +43,7 @@ public partial class Mushroom : RigidBody2D
     public override void _Ready()
     {
         _light = GetNode<PointLight2D>("PointLight2D") ?? throw new NullReferenceException("No PointLight2D for Mushroom"); 
-        _draggable = GetNode<Draggable>("Draggable") ?? throw new NullReferenceException("No Draggable for Mushroom"); 
+        _draggable = GetNode<GodotObject>("Draggable") ?? throw new NullReferenceException("No Draggable for Mushroom"); 
     }
 
     private void TrySaturate()
@@ -54,7 +54,7 @@ public partial class Mushroom : RigidBody2D
         }
         
         _light.Enabled = true;
-        _draggable.Disabled = false;
+        _draggable.Set("disabled", false);
     }
 
     private void OnDragStart()

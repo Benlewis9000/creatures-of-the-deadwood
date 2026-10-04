@@ -18,7 +18,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 8, 8)
 
 [node name="Draggable" parent="." unique_id=107635512 instance=ExtResource("1_p7ewo")]
-Shape = ExtResource("3_ovsrw")
+shape = ExtResource("3_ovsrw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=640760609]
 shape = ExtResource("3_ovsrw")
@@ -28,6 +28,6 @@ scale = Vector2(0.05, 0.05)
 energy = 0.5
 texture = ExtResource("5_8nru3")
 
-[connection signal="DragEnd" from="Draggable" to="." method="OnDragEnd"]
 [connection signal="body_entered" from="Draggable" to="." method="OnBodyEntered"]
 [connection signal="body_exited" from="Draggable" to="." method="OnBodyExited"]
+[connection signal="drag_end" from="Draggable" to="." method="OnDragEnd"]
