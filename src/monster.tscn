@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d4kj8bb8lkfs3"]
 
 [ext_resource type="Texture2D" uid="uid://lfdmkjkxaaxp" path="res://art/sprites-x16.png" id="1_5bop3"]
-[ext_resource type="Script" uid="uid://cr4emqqabxjed" path="res://src/Monster.cs" id="1_5o1l5"]
+[ext_resource type="Script" uid="uid://cjlpojfwllqy1" path="res://src/monster.gd" id="1_5o1l5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5o1l5"]
 atlas = ExtResource("1_5bop3")
@@ -82,4 +82,4 @@ shape = SubResource("CircleShape2D_km8ha")
 wait_time = 2.875
 one_shot = true
 
-[connection signal="timeout" from="ActiveTimer" to="." method="OnActiveTimerTimeout"]
+[connection signal="timeout" from="ActiveTimer" to="." method="_on_active_time_timeout"]

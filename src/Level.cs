@@ -43,7 +43,7 @@ public partial class Level : Node2D
 	private Timer _resourceTimer;
 	private Timer _monsterTimer;
 	private Timer _scoreTimer;
-	private Monster[] _monsters =  new Monster[6];
+	private GodotObject[] _monsters =  new GodotObject[6];
 
 	public override void _Ready()
 	{
@@ -56,7 +56,7 @@ public partial class Level : Node2D
 		_scoreTimer = GetNode<Timer>("ScoreTimer") ?? throw new NullReferenceException("No ScoreTimer for level");
 		for (var i = 0; i < 6; i++)
 		{
-			_monsters[i] = GetNode<Monster>("Monster" + i);
+			_monsters[i] = GetNode<GodotObject>("Monster" + i);
 		}
 		
 		
@@ -111,7 +111,7 @@ public partial class Level : Node2D
 	private void OnMonsterTimerTimeout()
 	{
 		var monsterRandom = GD.Randi() % 5;
-		_monsters[monsterRandom].Activate();
+		_monsters[monsterRandom].Call("activate");
 		
 		var interval = 5 + GD.Randi() % 15 ;
 		_monsterTimer.Start(interval);
