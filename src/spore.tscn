@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://molg3yfvakqy"]
 
-[ext_resource type="Script" uid="uid://bu0j4fqk1pi61" path="res://src/Spore.cs" id="1_k0i7u"]
+[ext_resource type="Script" uid="uid://iflc1se5s44s" path="res://src/spore.gd" id="1_k0i7u"]
 [ext_resource type="Texture2D" uid="uid://7vjv2ah0vxrb" path="res://art/sprites-x8.png" id="1_ubmek"]
 [ext_resource type="PackedScene" uid="uid://c4ebceh3ykpsm" path="res://src/draggable.tscn" id="2_bx3wh"]
 [ext_resource type="Shape2D" uid="uid://525l58xvpmcq" path="res://src/resource_shape.tres" id="3_k0i7u"]
@@ -25,6 +25,6 @@ shape = ExtResource("3_k0i7u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1605893836]
 shape = ExtResource("3_k0i7u")
 
-[connection signal="area_entered" from="Draggable" to="." method="OnAreaEntered"]
-[connection signal="area_exited" from="Draggable" to="." method="OnAreaExited"]
-[connection signal="drag_end" from="Draggable" to="." method="OnDragEnd"]
+[connection signal="area_entered" from="Draggable" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Draggable" to="." method="_on_area_exited"]
+[connection signal="drag_end" from="Draggable" to="." method="_on_drag_end"]

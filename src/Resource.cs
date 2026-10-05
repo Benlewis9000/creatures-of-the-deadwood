@@ -4,7 +4,7 @@ namespace RootGame;
 
 public static class Resource
 {
-    public static readonly PackedScene SporeScene = GD.Load<PackedScene>("res://src/spore.tscn");
-    public static readonly PackedScene WaterScene = GD.Load<PackedScene>("res://src/water.tscn");
-    public static readonly PackedScene EnergyScene = GD.Load<PackedScene>("res://src/energy.tscn");
+    public static readonly GDScript SporeScene = GD.Load<GDScript>("res://src/spore.gd");
+    public static readonly GDScript WaterScene = GD.Load<GDScript>("res://src/water.gd");
+    public static readonly GDScript EnergyScene = GD.Load<GDScript>("res://src/energy.gd");
 }

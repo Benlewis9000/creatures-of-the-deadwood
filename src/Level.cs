@@ -130,38 +130,38 @@ public partial class Level : Node2D
 
 	private Node2D CreateSporeScene()
 	{
-		var spore = CreateResourceScene<Spore>(Resource.SporeScene);
-		spore.SporePlanted += (position) =>
+		var spore = CreateResourceScene(Resource.SporeScene);
+		spore.Connect("spore_planted", Callable.From<Vector2>(position =>
 		{
-			var mushroom = GD.Load<PackedScene>("res://src/mushroom.tscn").Instantiate<Mushroom>();
-			mushroom.Position = position;
+			var mushroom = GD.Load<PackedScene>("res://src/mushroom.tscn").Instantiate<Node2D>();
+			mushroom.Set("position", position);
 			AddChild(mushroom);
-			mushroom.MonsterFed += () =>
+			mushroom.Connect("monster_fed", Callable.From(() =>
 			{
 				Saturation += 10;
 				_progressBar.Value = Saturation;
-			};
-		};
+			}));
+		}));
 		
 		return spore;
 	}
 
 	private Node2D CreateEnergyScene()
 	{
-		return CreateResourceScene<Node2D>(Resource.EnergyScene);
+		return CreateResourceScene(Resource.EnergyScene);
 	}
 
 	private Node2D CreateWaterScene()
 	{
-		return CreateResourceScene<Node2D>(Resource.WaterScene);
+		return CreateResourceScene(Resource.WaterScene);
 	}
 
-	private T CreateResourceScene<T>(PackedScene resourceScene) where T : Node2D
+	private Node2D CreateResourceScene(GDScript resourceScene)
 	{
-		var scene = resourceScene.Instantiate<T>();
+		var scene = (Node2D)resourceScene.New();
 		var spawnLocation = GetNode<PathFollow2D>("ResourceSpawner/Path");
 		spawnLocation.ProgressRatio = GD.Randf();
-		scene.Position = spawnLocation.Position;
-		return  scene;
+		scene.Set("position", spawnLocation.Position);
+		return scene;
 	}
 }
