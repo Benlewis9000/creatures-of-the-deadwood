@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbp8id4oyjy4l"]
 
 [ext_resource type="Texture2D" uid="uid://lfdmkjkxaaxp" path="res://art/sprites-x16.png" id="1_g8rtr"]
-[ext_resource type="Script" uid="uid://m5cdid7d0iqj" path="res://src/Mushroom.cs" id="1_mgine"]
+[ext_resource type="Script" uid="uid://dgdakwbx0nu4a" path="res://src/mushroom.gd" id="1_jd1vk"]
 [ext_resource type="PackedScene" uid="uid://c4ebceh3ykpsm" path="res://src/draggable.tscn" id="3_i4c76"]
 [ext_resource type="Texture2D" uid="uid://cu0t2456jmpf1" path="res://art/point-light.png" id="3_jd1vk"]
 [ext_resource type="Shape2D" uid="uid://ddfjyrslk8nwr" path="res://src/mushroom_circle_shape.tres" id="4_5prij"]
@@ -11,7 +11,7 @@ collision_mask = 0
 gravity_scale = 0.2
 freeze = true
 linear_damp = 1.0
-script = ExtResource("1_mgine")
+script = ExtResource("1_jd1vk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1630878298]
 texture = ExtResource("1_g8rtr")
@@ -33,7 +33,7 @@ disabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1975797857]
 shape = ExtResource("4_5prij")
 
-[connection signal="area_entered" from="Draggable" to="." method="OnAreaEntered"]
-[connection signal="area_exited" from="Draggable" to="." method="OnAreaExited"]
-[connection signal="drag_end" from="Draggable" to="." method="OnDragEnd"]
-[connection signal="drag_start" from="Draggable" to="." method="OnDragStart"]
+[connection signal="area_entered" from="Draggable" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Draggable" to="." method="_on_area_exited"]
+[connection signal="drag_end" from="Draggable" to="." method="_on_drag_end"]
+[connection signal="drag_start" from="Draggable" to="." method="_on_drag_start"]

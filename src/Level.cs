@@ -136,7 +136,7 @@ public partial class Level : Node2D
 			var mushroom = GD.Load<PackedScene>("res://src/mushroom.tscn").Instantiate<Node2D>();
 			mushroom.Set("position", position);
 			AddChild(mushroom);
-			mushroom.Connect("MonsterFed", Callable.From(() =>
+			mushroom.Connect("monster_fed", Callable.From(() =>
 			{
 				Saturation += 10;
 				_progressBar.Value = Saturation;
