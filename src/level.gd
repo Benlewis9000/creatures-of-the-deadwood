@@ -10,7 +10,6 @@ const _MAX_SATURATION = 90
 @onready var _monster_timer: Timer = $MonsterTimer
 @onready var _score_timer: Timer = $ScoreTimer
 
-
 var _is_game_over: int
 var _monsters: Array[Monster] = []
 
@@ -83,16 +82,17 @@ func _on_score_timer_timeout() -> void:
 
 func _create_spore_scene() -> Spore:
 	var spore: Spore = _create_resource_scene(preload("res://src/spore.tscn"))
-	spore.spore_planted.connect(
-		func (planted_position: Vector2) -> void:
-			var mushroom: Mushroom = preload("res://src/mushroom.tscn").instantiate()
-			mushroom.position = planted_position
-			add_child(mushroom)
-			mushroom.monster_fed.connect(func () -> void:
-					saturation += 10
-			)
-	)
+	spore.spore_planted.connect(_on_spore_planted)
 	return spore
+
+func _on_spore_planted(planted_position: Vector2) -> void:
+	var mushroom: Mushroom = preload("res://src/mushroom.tscn").instantiate()
+	mushroom.position = planted_position
+	add_child(mushroom)
+	mushroom.monster_fed.connect(_on_monster_fed)
+
+func _on_monster_fed() -> void:
+	saturation += 10
 
 func _create_energy_scene() -> Energy:
 	return _create_resource_scene(preload("res://src/energy.tscn")) as Energy

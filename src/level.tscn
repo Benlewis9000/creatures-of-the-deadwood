@@ -178,3 +178,4 @@ stream = ExtResource("11_lmnmg")
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
 [connection signal="timeout" from="MonsterTimer" to="." method="_on_monster_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="monster_fed" from="Mushroom" to="." method="_on_monster_fed"]
