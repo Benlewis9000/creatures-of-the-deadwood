@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://domq5rm0ob18"]
 
-[ext_resource type="Script" uid="uid://dohl4hh0bdcu" path="res://src/Level.cs" id="1_dh7pt"]
+[ext_resource type="Script" uid="uid://jmqso7c234et" path="res://src/level.gd" id="1_lmnmg"]
 [ext_resource type="Texture2D" uid="uid://bysdiou1vtpvo" path="res://art/root-tree.png" id="1_ybxv7"]
-[ext_resource type="PackedScene" uid="uid://bjqhpqqqyyn57" path="res://tree.tscn" id="3_68xyb"]
+[ext_resource type="PackedScene" uid="uid://idsplxwa3loh" path="res://src/tree_area.tscn" id="3_lmnmg"]
 [ext_resource type="PackedScene" uid="uid://cbp8id4oyjy4l" path="res://src/mushroom.tscn" id="4_feg4a"]
 [ext_resource type="PackedScene" uid="uid://d4kj8bb8lkfs3" path="res://src/monster.tscn" id="5_dh7pt"]
 [ext_resource type="Texture2D" uid="uid://bhubpcay0p2r6" path="res://art/hunger-bar-under.png" id="6_pothl"]
@@ -19,13 +19,13 @@ _data = {
 point_count = 2
 
 [node name="Level" type="Node2D" unique_id=737300030]
-script = ExtResource("1_dh7pt")
+script = ExtResource("1_lmnmg")
 
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1531637260]
 position = Vector2(160, 90)
 texture = ExtResource("1_ybxv7")
 
-[node name="Tree" parent="." unique_id=1842487974 instance=ExtResource("3_68xyb")]
+[node name="TreeArea" parent="." unique_id=1842487974 instance=ExtResource("3_lmnmg")]
 
 [node name="ResourceSpawner" type="Path2D" parent="." unique_id=396871285]
 curve = SubResource("Curve2D_ybxv7")
@@ -175,6 +175,6 @@ autoplay = true
 [node name="GameOverSound" type="AudioStreamPlayer" parent="." unique_id=1719408817]
 stream = ExtResource("11_lmnmg")
 
-[connection signal="timeout" from="ResourceTimer" to="." method="OnResourceTimerTimeout"]
-[connection signal="timeout" from="MonsterTimer" to="." method="OnMonsterTimerTimeout"]
-[connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]
+[connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
+[connection signal="timeout" from="MonsterTimer" to="." method="_on_monster_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

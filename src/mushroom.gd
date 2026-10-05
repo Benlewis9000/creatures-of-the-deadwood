@@ -11,7 +11,7 @@ signal monster_fed
 var _target_monster: Monster = null
 
 var _energy_level: int = 0
-var energy_level:
+var energy_level: int:
 	get:
 		return _energy_level
 	set(value):
@@ -19,7 +19,7 @@ var energy_level:
 		_try_saturate()
 
 var _water_level: int = 0
-var water_level:
+var water_level: int:
 	get:
 		return _water_level
 	set(value):
